@@ -11,11 +11,11 @@ var Queue = function() {
 
     // create a numeric key
     var keys = Object.keys(storage);
-    var maxKey = Math.max(Number(...keys))
-    var newKey = maxKey + 1
+    var maxKey = Math.max(Number(...keys));
+    var newKey = maxKey + 1;
 
     // creates a new key-value
-    // add this new property at the end of the queue (storage)
+    // add new property at the end of the queue (storage)
     storage[newKey] = value;
 
   };
@@ -25,10 +25,15 @@ var Queue = function() {
 
     // get the first key in the array
     var keys = Object.keys(storage);
-    var minKey = Math.min(Number(...keys))
+    var minKey = Math.min(Number(...keys));
+
+    // "value" is just to keep the value reference, to be returned after
+    // delete storage[minkey] happen
+    var value = storage[minKey];
 
     delete storage[minKey];
 
+    return value;
   };
 
   // Return the number of items in the queue
