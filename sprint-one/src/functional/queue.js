@@ -6,39 +6,36 @@ var Queue = function() {
 
   // Implement the methods below
 
-  var count = 0;
-
+  // Add a string to the back of the queue
   someInstance.enqueue = function(value) {
+
+    // create a numeric key
+    var keys = Object.keys(storage);
+    var maxKey = Math.max(Number(...keys))
+    var newKey = maxKey + 1
+
     // creates a new key-value
     // add this new property at the end of the queue (storage)
-    storage[count] = value;
-    console.log('storage after enqueue: ', storage);
+    storage[newKey] = value;
 
-    // add 1 to count
-    count ++;
-
-    // returns storage
-    return storage;
   };
 
+  // Remove and return the string at the front of the queue
   someInstance.dequeue = function() {
 
-    // first key
-    var firstkey = Object.keys(storage)[0];
+    // get the first key in the array
+    var keys = Object.keys(storage);
+    var minKey = Math.min(Number(...keys))
 
-    // removes the first property of storage
-    delete storage[firstkey];
-    console.log('storage after dequeue: ', storage);
+    delete storage[minKey];
 
-    return storage;
   };
 
+  // Return the number of items in the queue
   someInstance.size = function() {
     // get the number of keys in the storage
     var keysNumber = Object.keys(storage).length;
-    console.log('storage size: ', keysNumber);
 
-    // return number of keys of storage
     return keysNumber;
   };
 
