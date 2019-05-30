@@ -23,7 +23,7 @@ var Queue = function() {
   // Remove and return the string at the front of the queue
   someInstance.dequeue = function() {
 
-    // get the first key in the array
+    // get the first key in the storage
     var keys = Object.keys(storage);
     var minKey = Math.min(Number(...keys));
 

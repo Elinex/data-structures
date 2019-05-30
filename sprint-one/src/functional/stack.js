@@ -6,42 +6,49 @@ var Stack = function() {
 
   // Implement the methods below
 
-  var count = 0;
-
+  //  Add a string to the top of the stack
   someInstance.push = function(value) {
-    // creates a new key-value
-    // add this new property at the end of the queue (storage)
-    storage[count] = value;
-
-
-    // add 1 to count
-    count ++;
-
-    // returns storage
-    return storage;
-
-  };
-
-  someInstance.pop = function() {
-    // last key
+    // create a numeric key
     var keys = Object.keys(storage);
-    var lastkey = keys[keys.length-1];
+    var maxKey = Math.max(Number(...keys));
+    var newKey = maxKey + 1;
 
-    // removes the last property of storage
-    delete storage[lastkey];
-
-
-    return storage;
+    // creates a new key-value
+    // add new property at the top of the stack
+    storage[newKey] = value;
 
   };
 
+  // Remove and return the string on the top of the stack
+  someInstance.pop = function() {
+
+    // get the last key in the storage
+    var keys = Object.keys(storage);
+    var stringToNumber = function(){
+      var toNumber = [];
+      for (var i =0 ; i < keys.length; i ++){
+        toNumber.push(Number(keys[i]));
+      }
+      return toNumber;
+    }();
+    var maxKey = Math.max(...stringToNumber);
+
+    // "value" is just to keep the value reference, to be returned after
+    // delete storage[maxKey] happen
+    var value = storage[maxKey];
+
+    delete storage[maxKey];
+
+    return value;
+
+  };
+
+  // Return the number of items on the stack
   someInstance.size = function() {
     // get the number of keys in the storage
-    var keysLength = Object.keys(storage).length;
+    var keysNumber = Object.keys(storage).length;
 
-
-    // return number of keys of storage
-    return keysLength;
+    return keysNumber;
   };
 
   return someInstance;
