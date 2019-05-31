@@ -10,8 +10,7 @@ var Stack = function() {
   someInstance.push = function(value) {
     // create a numeric key
     var keys = Object.keys(storage);
-    var maxKey = Math.max(Number(...keys));
-    var newKey = maxKey + 1;
+    var newKey = keys.length + 1;
 
     // creates a new key-value
     // add new property at the top of the stack
@@ -24,14 +23,7 @@ var Stack = function() {
 
     // get the last key in the storage
     var keys = Object.keys(storage);
-    var stringToNumber = function(){
-      var toNumber = [];
-      for (var i =0 ; i < keys.length; i ++){
-        toNumber.push(Number(keys[i]));
-      }
-      return toNumber;
-    }();
-    var maxKey = Math.max(...stringToNumber);
+    var maxKey = keys[keys.length-1];
 
     // "value" is just to keep the value reference, to be returned after
     // delete storage[maxKey] happen
