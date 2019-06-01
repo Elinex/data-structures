@@ -12,7 +12,6 @@ var LinkedList = function() {
       list.head = newNode;
       list.tail = newNode;
     } else {
-      list.head = list.tail;
       list.tail = newNode;
       list.head.next = list.tail;
     }
@@ -30,12 +29,23 @@ var LinkedList = function() {
   };
 
   list.contains = function(target) {
-    var valueFound = Object.values(list).filter(value => value.node.value === target);
-    if (valueFound.length > 0) {
-      return true;
-    } else {
-      return false;
-    }
+    var result;
+
+    var checkByNode = function (node){
+      if(node.value === target){
+        result = true;
+      } else{
+        if(node.next === null){
+          result = false;
+        } else{
+          checkByNode(node.next);
+        }
+      }
+    };
+
+    checkByNode(list.head);
+
+    return result;
   };
 
   return list;
