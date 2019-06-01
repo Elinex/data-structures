@@ -15,21 +15,30 @@ var treeMethods = {};
 treeMethods.addChild = function(value) {
   var node = {value, children: []};
 
-  if (this.value === null){
-    this.value = value;
-  } else {
-    return this.children.push(node);
-  }
+  return this.children.push(node);
 
 };
 
 treeMethods.contains = function(target) {
-  console.log(this);
-  if(this.value.value === target){
-    return true;
-  } else {
-    return false;
-  }
+  var result;
+
+  var checkByNode = function(node){
+    if(node.value === target){
+      result = true;
+    } else {
+      if (node.children.length === 0){
+        result = false;
+      } else {
+        for (var i = 0; i < node.children.length; i++){
+          checkByNode(node.children[i]);
+        }
+      }
+    }
+  };
+
+  checkByNode(this);
+
+  return result;
 };
 
 
