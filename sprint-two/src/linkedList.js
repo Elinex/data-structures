@@ -22,8 +22,11 @@ var LinkedList = function() {
   list.removeHead = function() {
     // removes the first node of a list (list.head)
     // and point its value to list.head.next
-    list.head = list.head.next;
-
+    if (list.head.next === null){
+      return list.head.value;
+    } else {
+      list.head = list.head.next;
+    }
   };
 
   list.contains = function(target) {
